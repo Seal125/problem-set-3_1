@@ -63,8 +63,33 @@ const staggeredCase = (str) => {
 };
 
 const wordLengths = (str) => {
+  let emptyArr = [];
+  if(str === undefined) {
+    return emptyArr;
+  }
+  if(str.length === 0) {
+    return emptyArr;
+  }
   
-}
+  let newStr = str.split(' ');
+  let result = newStr.map(word => {
+    return `${word} ${word.length}`
+  });
+  return result;
+};
+
+const searchWord = (word, str) => {
+  let regex = new RegExp(word + '\s', 'gi');
+  return str.match(regex).length;
+};
+
+const highlightWord = (word, str) => {
+  let regex = new RegExp(word + '\\s', 'gi');
+  if(str.match(regex)) {
+    let newStr = `<strong>${word}</strong>`;
+    return str.replace(word, newStr);
+  }
+};
 // The code below ensures that this file can talk to our test file.
 module.exports = {
   isUpperCase,
