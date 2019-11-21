@@ -1,13 +1,10 @@
 const isUpperCase = (str) => {
-  if (str.match(/^[^a-z]*$/)) {
-    return true;
-  }
-  return false;
+  return !/[a-z]/.test(str);
 };
 
+
 const removeVowels = (arr) => {
-  const result = arr.map((words) => words.replace(/[aeiouAEIOU]/g, ''));
-  return result;
+  return arr.map((words) => words.replace(/[aeiou]/ig, ''));
 };
 
 const wordCap = (str) => {
@@ -71,16 +68,13 @@ const wordLengths = (str) => {
 
 const searchWord = (word, str) => {
   const regex = new RegExp(word, 'gi');
-  return str.match(regex).length;
+  return str.match(regex) ? str.match(regex).length : 0;
 };
 
 const highlightWord = (word, str) => {
-  const regex = new RegExp(word, 'gi');
-  if (str.match(regex)) {
-    const newStr = `<strong>${word}</strong>`;
-    return str.replace(word, newStr);
-  }
-  return str;
+  const regex = new RegExp(`\\b${word}\\b`, 'ig');
+    // const newStr = `<strong>${word}</strong>`;
+    return str.replace(regex, (newStr) => `<strong>${newStr}</strong>`);
 };
 // The code below ensures that this file can talk to our test file.
 module.exports = {
