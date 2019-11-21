@@ -79,7 +79,7 @@ const wordLengths = (str) => {
 };
 
 const searchWord = (word, str) => {
-  let regex = new RegExp(word + '\s', 'gi');
+  let regex = new RegExp(word, 'gi');
   return str.match(regex).length;
 };
 
