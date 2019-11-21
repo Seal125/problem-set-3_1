@@ -1,22 +1,18 @@
 const isUpperCase = (str) => {
-  if(str.match(/^[^a-z]*$/)) { 
+  if (str.match(/^[^a-z]*$/)) {
     return true;
   }
   return false;
 };
 
 const removeVowels = (arr) => {
-  let result = arr.map(words => {
-      return words.replace(/[aeiouAEIOU]/g, '');
-  });
+  const result = arr.map((words) => words.replace(/[aeiouAEIOU]/g, ''));
   return result;
 };
 
 const wordCap = (str) => {
   const newStr = str.toLowerCase().split(' ');
-  let result = newStr.map(word => {
-    return word.replace(/^[a-z]/g, word[0].toUpperCase());
-  });
+  const result = newStr.map((word) => word.replace(/^[a-z]/g, word[0].toUpperCase()));
   return result.join(' ');
 };
 
@@ -28,12 +24,11 @@ const swapCase = (str) => {
   function lower(letter) {
     return letter.toLowerCase();
   }
-  
-  for(let letter of str) {
-    if(letter.match(/[a-z]/)) {
+
+  for (const letter of str) {
+    if (letter.match(/[a-z]/)) {
       newStr += letter.replace(/[a-z]/, upper);
-    }
-    else{
+    } else {
       newStr += letter.replace(/[A-Z]/, lower);
     }
   }
@@ -43,19 +38,17 @@ const swapCase = (str) => {
 const staggeredCase = (str) => {
   let result = '';
   let lastLetterLower = true;
-  
-  for(let char of str) {
+
+  for (const char of str) {
     if (char.match(/[a-z]/i)) {
-      if(lastLetterLower == false) {
+      if (lastLetterLower === false) {
         result += char.toLowerCase();
         lastLetterLower = true;
-      }
-      else if(lastLetterLower == true) {
+      } else if (lastLetterLower === true) {
         result += char.toUpperCase();
         lastLetterLower = false;
       }
-    }
-    else {
+    } else {
       result += char;
     }
   }
@@ -63,32 +56,31 @@ const staggeredCase = (str) => {
 };
 
 const wordLengths = (str) => {
-  let emptyArr = [];
-  if(str === undefined) {
+  const emptyArr = [];
+  if (str === undefined) {
     return emptyArr;
   }
-  if(str.length === 0) {
+  if (str.length === 0) {
     return emptyArr;
   }
-  
-  let newStr = str.split(' ');
-  let result = newStr.map(word => {
-    return `${word} ${word.length}`
-  });
+
+  const newStr = str.split(' ');
+  const result = newStr.map((word) => `${word} ${word.length}`);
   return result;
 };
 
 const searchWord = (word, str) => {
-  let regex = new RegExp(word, 'gi');
+  const regex = new RegExp(word, 'gi');
   return str.match(regex).length;
 };
 
 const highlightWord = (word, str) => {
-  let regex = new RegExp(word + '\\s', 'gi');
-  if(str.match(regex)) {
-    let newStr = `<strong>${word}</strong>`;
+  const regex = new RegExp(word, 'gi');
+  if (str.match(regex)) {
+    const newStr = `<strong>${word}</strong>`;
     return str.replace(word, newStr);
   }
+  return str;
 };
 // The code below ensures that this file can talk to our test file.
 module.exports = {
